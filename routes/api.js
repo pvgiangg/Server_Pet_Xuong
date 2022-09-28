@@ -23,8 +23,8 @@ router.post('/login', async function (req, res, next) {
 // http://localhost:3000/api/register
 
 router.post('/register', async function (req, res, next) {
-  const { email, password, confirm_password } = req.body;
-  const result = await userController.register(email, password, confirm_password);
+  const { name, username, email, phone, password, confirm_password } = req.body;
+  const result = await userController.register(name, username, email, phone, password, confirm_password);
   if (result) {
     res.json({ status: true });
   } else {
