@@ -35,12 +35,12 @@ app.use(session({
   cookie: { secure: false }
 }))
 
-mongoose.connect('mongodb+srv://admin:123@cluster0.bxyai.mongodb.net/DanhSach?retryWrites=true&w=majority', {
+mongoose.connect('mongodb+srv://admin:123@cluster0.9znjp.mongodb.net/XuongPet?retryWrites=true&w=majority', {  
   useNewUrlParser: true,
   useUnifiedTopology: true
 })
-  .then(() => console.log('>>>>>>>>>> DB Connected!!!!!!'))
-  .catch(err => console.log('>>>>>>>>> DB Error: ', err));
+.then(() => console.log('>>>>>>>>>> DB Connected!!!!!!'))
+.catch(err => console.log('>>>>>>>>> DB Error: ', err));
 
 
 //routes
