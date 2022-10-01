@@ -52,13 +52,11 @@ router.get('/products/:id/detail', [authentication.checkToken], async function (
   const product = await productController.getProductById(id);
   res.json(product);
 });
-//getAll
 router.get('/favorite',async function(req,res,next){
   const f = await favoriteController.getAllFavorite()
   res.json(f)
 })
-// insert
-router.post('/favorite/insert', async (req, res, next) => {
+router.post('/favorite/create', async (req, res, next) => {
   const { user_id, product_id } = req.body
   const f = await favoriteController.insertFavorite({ user_id, product_id })
   if (f) {
@@ -66,8 +64,7 @@ router.post('/favorite/insert', async (req, res, next) => {
   }
   res.status(401).json({success:false,msg:'insert failed!!!'})
 })
-//update
-router.post('/favorite/update',async function(req,res,next){
+router.post('/favorite/edit',async function(req,res,next){
   const {id} = req.body
   const f = await favoriteController.updateFavorite(id)
   if (f) {
