@@ -16,6 +16,7 @@ require('./components/products/model');
 var indexRouter = require('./routes/index');
 var productsRouter = require('./routes/products');
 var apiRouter = require('./routes/api');
+var categoriesRouter = require('./routes/categories');
 
 var app = express();
 
@@ -45,8 +46,9 @@ mongoose.connect('mongodb+srv://admin:123@cluster0.9znjp.mongodb.net/XuongPet?re
 
 //routes
 app.use('/', indexRouter);
-app.use('/san-pham', productsRouter);
+app.use('/products', productsRouter);
 app.use('/api', apiRouter);
+app.use('/categories', categoriesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

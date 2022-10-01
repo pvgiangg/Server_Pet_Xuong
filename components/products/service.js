@@ -33,7 +33,6 @@ exports.insert = async (product) => {
 }
 
 exports.delete = async (id) => {
-    // data = data.filter(item => item._id != id);
     await productModel.findByIdAndDelete(id);
 }
 

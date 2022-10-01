@@ -5,18 +5,23 @@ exports.getProducts = async () => {
     let data = await productService.getProducts();
     data = data.map((item, index) => {
         item = {
-            release: date.format(item.release),
             _id: item._id,
-            name: item.name,
-            price: item.price,
-            quantity: item.quantity,
-            image: item.image,
-            description: item.description,
+            name: item.Name,
+            price: item.Price,
+            describes: item.Describes,
+            evaluate: item.Evaluate,
+            quantity: item.Quantity,
+            image: item.Image,
+            isPet: item.IsPet,
+            isShop: item.IsShop,
             category_id: item.category_id,
             index: index + 1
         }
+        
         return item;
+        
     })
+    console.log('controller>>>>>>>>', data);
     return data;
 }
 

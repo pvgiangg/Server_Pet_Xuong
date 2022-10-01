@@ -5,6 +5,7 @@ const ObjectId = Schema.ObjectId;
 const categorySchema = new Schema({
     id: { type: ObjectId },
     name: { type: String },
+    image: {type: String},
 });
 
 // category: số ít
