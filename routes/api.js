@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken');
 const userController = require('../components/users/controller');
 const productController = require('../components/products/controller');
 const authentication = require('../components/middle/authentication');
-
+const favoriteController = require('../components/favorite/favorite')
 // http://localhost:3000/api/login
 
 router.post('/login', async function (req, res, next) {
@@ -52,5 +52,27 @@ router.get('/products/:id/detail', [authentication.checkToken], async function (
   const product = await productController.getProductById(id);
   res.json(product);
 });
-
+//getAll
+router.get('/favorite',async function(req,res,next){
+  const f = await favoriteController.getAllFavorite()
+  res.json(f)
+})
+// insert
+router.post('/favorite/insert', async (req, res, next) => {
+  const { user_id, product_id } = req.body
+  const f = await favoriteController.insertFavorite({ user_id, product_id })
+  if (f) {
+    return res.status(200).json({success:true,msg:'insert success!!'})
+  }
+  res.status(401).json({success:false,msg:'insert failed!!!'})
+})
+//update
+router.post('/favorite/update',async function(req,res,next){
+  const {id} = req.body
+  const f = await favoriteController.updateFavorite(id)
+  if (f) {
+    return res.status(200).json({success:true,msg:'update success!!'})
+  }
+  res.status(401).json({success:false,msg:'update failed!!!'})
+})
 module.exports = router;
