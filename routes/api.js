@@ -33,25 +33,6 @@ router.post('/register', async function (req, res, next) {
   }
 });
 
-
-
-
-// http://localhost:3000/api/products
-// thêm middle kiểm tra login
-// khi nào login, có token thì mới lấy được danh sách sản phẩm
-router.get('/products', [authentication.checkToken], async function (req, res, next) {
-  const products = await productController.getProducts();
-  res.json(products);
-});
-
-// http://localhost:3000/api/products/:id/detail
-// thêm middle kiểm tra login
-// khi nào login, có token thì mới lấy được danh sách sản phẩm
-router.get('/products/:id/detail', [authentication.checkToken], async function (req, res, next) {
-  const { id } = req.params;
-  const product = await productController.getProductById(id);
-  res.json(product);
-});
 router.get('/favorite',async function(req,res,next){
   const f = await favoriteController.getAllFavorite()
   res.json(f)
@@ -72,4 +53,23 @@ router.post('/favorite/edit',async function(req,res,next){
   }
   res.status(401).json({success:false,msg:'update failed!!!'})
 })
+
+
+// http://localhost:3000/api/products
+// thêm middle kiểm tra login
+// khi nào login, có token thì mới lấy được danh sách sản phẩm
+router.get('/products', [authentication.checkToken], async function (req, res, next) {
+  const products = await productController.getProducts();
+  res.json(products);
+});
+
+// http://localhost:3000/api/products/:id/detail
+// thêm middle kiểm tra login
+// khi nào login, có token thì mới lấy được danh sách sản phẩm
+router.get('/products/:id/detail', [authentication.checkToken], async function (req, res, next) {
+  const { id } = req.params;
+  const product = await productController.getProductById(id);
+  res.json(product);
+});
+
 module.exports = router;
