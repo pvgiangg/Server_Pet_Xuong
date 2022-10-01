@@ -17,16 +17,14 @@ exports.dangNhap = async (email, password) => {
     return { _id: user._id, email: user.email };
 }
 
-exports.register = async (name, username, email, phone, password, confirm_password) => {
-    if (password != confirm_password) return false;
+exports.register = async (name, username, email, phone, password) => {
     let userEmail = await userService.dangNhap(email);
     let userPhone = await userService.dangNhap(phone);
     let userUsername = await userService.dangNhap(username);
     if (userEmail || userPhone || userUsername) return false;
-
     const hash = await bcrypt.hash(password, await bcrypt.genSalt(10));
-
     user = await userService.register(name, username, email, phone, hash);
-
     return true;
 }
+
+
