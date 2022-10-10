@@ -45,13 +45,11 @@ router.post('/favorite/create', async (req, res, next) => {
   }
   res.status(401).json({success:false,msg:'insert failed!!!'})
 })
-router.post('/favorite/edit',async function(req,res,next){
-  const {id} = req.body
-  const f = await favoriteController.updateFavorite(id)
-  if (f) {
-    return res.status(200).json({success:true,msg:'update success!!'})
-  }
-  res.status(401).json({success:false,msg:'update failed!!!'})
+
+router.delete('/favorite/:id',async function(req,res,next){
+  const {id} = req.params
+  await favoriteController.deleteFavorite(id)
+  return res.json({success:true,msg:'delete success!!'})
 })
 
 

@@ -17,3 +17,6 @@ exports.insertFavorite = async function(favorite){
 exports.updateFavorite = async function(id){
     await favoriteModel.findOneAndUpdate({_id:id})
 }
+exports.deleteFavorite = async function(id){
+    await favoriteModel.deleteOne({_id:id})
+}
